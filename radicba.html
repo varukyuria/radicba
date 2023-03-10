@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radicba</title>
+  <style>
+    button {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <button onclick="init();this.remove();">clic</button>
+  </div>
+
+  <script>
+    
+    let radios = [];
+    const mainElem = document.querySelector('#main');
+
+
+    function createRadio(name, src) {
+      const r = new Radio(name, src, mainElem, radios);
+    }
+
+    function stopAll() {
+      radios.forEach(x => x.stop());
+    }
+
+    class Radio {
+      constructor(name, src, parent, arr) {
+        this.name = name;
+        this.audioElem = document.createElement('audio');
+        this.audioElem.controls = false;
+        this.audioElem.src = src;
+        this.buttonElem = document.createElement('button');
+        this.buttonElem.textContent = name;
+        this.audioElem.volume = 0;
+        this.buttonElem.onclick = () => this.play();
+        parent.appendChild(this.audioElem);
+        parent.appendChild(this.buttonElem);
+        this.audioElem.play()
+        arr.push(this);
+      }
+
+       play() {
+        if (this.audioElem.paused) {
+          this.audioElem.play().finally();
+        }
+        stopAll();
+        console.log(this.audioElem);
+        this.audioElem.volume = 1;
+      }
+
+      stop() {
+        this.audioElem.volume = 0;
+      }
+
+    }
+
+    function init() {
+      createRadio('Shopping Classics', 'https://stream4.suenas.net/shoppingclassics');
+      createRadio('Orfeo', 'https://vps-6de10815.vps.ovh.ca:10970/;');
+      createRadio('Heat', 'https://26643.live.streamtheworld.com/CADENAHEAT.mp3?dist=c3-web');
+      createRadio('Loca suelta', 'https://stream4.suenas.net/locasuelta');
+      createRadio('Gamba', 'https://servidor1.hostradios.com:8132/stream?1678226745710');
+      createRadio('Sonidera', 'https://servidor1.hostradios.com:8146/stream?1678226885508');
+      createRadio('Quality X', 'https://stream.qualityradio.com.ar/qualityx?ver=459778');
+
+      const butt = document.createElement('button');
+      butt.textContent = 'PAUSA';
+      mainElem.appendChild(butt);
+      butt.onclick = function() {
+        stopAll();
+      };
+    }
+
+
+  </script>
+</body>
+</html>
