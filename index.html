@@ -5,9 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Radicba</title>
   <style>
+    
     button {
       margin: 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #fff;
+      background-color: #ff6b6b;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 40px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0px 5px 0px 0px rgba(255, 0, 0, 0.5);
+  }
+
+    button:hover {
+      background-color: #f44336;
+      box-shadow: 0px 5px 0px 0px rgba(255, 0, 0, 0.7);
     }
+
+    button:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #ff6b6b;
+    }
+
+    button:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+
   </style>
 </head>
 <body>
